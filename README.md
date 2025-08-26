@@ -105,7 +105,7 @@ python src/data_loader.py --download-all
 
 ### Basic Usage
 
-#### 1. Train ALS Model with Bias Terms
+#### 1. Train ALS Model with Bias Termshttps://www.linkedin.com/in/astridemelvinfokamninyim11/
 ```python
 from src.als_bias_only import ALSBiasOnly
 
@@ -264,8 +264,8 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 - **Author**: [ASTRIDE MELVIN FOKAM NINYIM]
 - **Email**: [melvin@aims.ac.za]
-- **LinkedIn**: []
-- **Project Link**: [https://github.com/[MELAI-1]/movie-recommender-system](https://github.com/[MELAI-1]/movie-recommender-system)
+- **LinkedIn**: [https://www.linkedin.com/in/astridemelvinfokamninyim11/]
+- **Project Link**: [https://github.com/MELAI-1/movie-recommender-system](https://github.com/MELAI-1/movie-recommender-system)
 
 ---
 
