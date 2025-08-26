@@ -89,7 +89,7 @@ scipy >= 1.7.0
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/[your-username]/movie-recommender-system.git
+git clone https://github.com/MELAI-1/movie-recommender-system.git
 cd movie-recommender-system
 ```
 
@@ -246,11 +246,6 @@ Statistical significance tested using Welch's t-test with α=0.05.
 - **Reproducible research** with complete methodology documentation
 - **Publication-ready** analysis following ICML formatting standards
 
-### Technical Excellence
-- **Optimized implementation** handling 32M+ ratings efficiently
-- **Clean, documented code** following PEP8 standards
-- **Modular design** enabling easy experimentation and extension
-- **Professional visualization** with publication-quality figures
 
 ### Practical Impact
 - **Real-world validation** through user scenario testing
@@ -258,23 +253,8 @@ Statistical significance tested using Welch's t-test with α=0.05.
 - **Scalable architecture** suitable for production deployment
 - **A/B testing framework** for continuous improvement
 
-## 📝 Citation
 
-If you use this code in your research, please cite:
 
-```bibtex
-@article{your_name_2024,
-    title={Matrix Factorization with Genre Integration for Movie Recommendation: A Comprehensive Study on the MovieLens Dataset},
-    author={[Your Name]},
-    journal={Technical Report},
-    year={2024},
-    url={https://github.com/[your-username]/movie-recommender-system}
-}
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🤝 Contributing
 
@@ -282,10 +262,10 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 ## 📧 Contact
 
-- **Author**: [Your Name]
-- **Email**: [your.email@university.edu]
-- **LinkedIn**: [Your LinkedIn Profile]
-- **Project Link**: [https://github.com/[your-username]/movie-recommender-system](https://github.com/[your-username]/movie-recommender-system)
+- **Author**: [ASTRIDE MELVIN FOKAM NINYIM]
+- **Email**: [melvin@aims.ac.za]
+- **LinkedIn**: []
+- **Project Link**: [https://github.com/[MELAI-1]/movie-recommender-system](https://github.com/[MELAI-1]/movie-recommender-system)
 
 ---
 
@@ -293,7 +273,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 - MovieLens dataset provided by GroupLens Research at the University of Minnesota
 - Inspired by collaborative filtering research from [relevant papers]
-- Course supervision: [Professor Name], [University]
+- Course supervision: [Ulrich Paquet], [AIMS SOUTH AFRICA]
 
 ---
 
