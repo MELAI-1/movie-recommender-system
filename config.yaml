@@ -27,7 +27,9 @@ paths:
 
 data:
   # Base folder name for the dataset files
-  dataset_folder: "ml-32m"
+  dataset_folder_dir: "/home/melvin/Documents/ml-32m"
+
+  
   # Filenames within the dataset_folder
   movies_file: "movies.csv"
   ratings_file: "ratings.csv"
