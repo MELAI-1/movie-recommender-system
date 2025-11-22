@@ -1,0 +1,54 @@
+
+# =================================================================
+# PROJECT PATHS (RELATIVE to the project root)
+# =================================================================
+
+paths:
+  
+  project_root: "."
+
+  # Directory for saving generated figures and charts
+  # We'll place figures inside the 'reports' folder for presentation
+  figures: "reports/figures"
+
+  # Directory for raw data (e.g., the ml-32m download)
+  data_raw: "data/raw"
+
+  # Directory for cleaned/pre-processed data and temporary files
+  data_processed: "data/processed"
+
+  # Directory for saving trained models
+  models: "src/models"
+
+
+# =================================================================
+# DATA CONFIGURATION
+# =================================================================
+
+data:
+  # Base folder name for the dataset files
+  dataset_folder: "ml-32m"
+  # Filenames within the dataset_folder
+  movies_file: "movies.csv"
+  ratings_file: "ratings.csv"
+  # Train/Test split size (e.g., 0.2 means 20% for testing)
+  test_size: 0.2
+
+# =================================================================
+# MODEL HYPERPARAMETERS
+# =================================================================
+
+model:
+  # Shared hyperparameters for both ALS and BPR
+  n_factors: 50
+  regularization: 0.01
+  n_epochs: 100
+  
+  als:
+    # Hyperparameter specific to the Alternating Least Squares model
+    alpha: 40
+    
+  bpr:
+    # Hyperparameter specific to the Bayesian Personalized Ranking model
+    learning_rate: 0.001
+    batch_size: 256

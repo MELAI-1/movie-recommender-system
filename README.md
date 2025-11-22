@@ -25,42 +25,29 @@ This project implements and evaluates multiple recommendation approaches:
 ## 🗂 Repository Structure
 
 ```text
-movie-recommender-system/
+movie_recsys/
+├── config.yaml
 ├── README.md
-├── LICENSE
-├── requirements.txt
-├── src/
-│   ├── data_loader.py
-│   ├── als_bias_only.py
-│   ├── als_full.py
-│   ├── als_with_genres.py
-│   ├── bpr_algorithm.py
-│   ├── evaluation.py
-│   ├── visualization.py
-│   ├── ab_testing.py
-│   └── utils.py
-├── notebooks/
-│   ├── 01_dataset_analysis.ipynb
-│   ├── 02_als_experiments.ipynb
-│   ├── 03_genre_integration.ipynb
-│   ├── 04_visualizations.ipynb
-│   └── 05_recommendations_demo.ipynb
+├── requirements.txt           # numpy, pandas, matplotlib, seaborn, streamlit, numba
 ├── data/
-│   ├── ml-1m/
-│   ├── ml-10m/
-│   └── ml-25m/
-├── figures/
-│   ├── dataset/
-│   ├── convergence/
-│   ├── embeddings/
-│   └── results/
-├── results/
+│   ├── raw/                   # Download  ml-32m here
+│   └── processed/             # Saved numpy arrays / pickle files
+├── src/
+│   ├── __init__.py
+│   ├── data_loader.py         # Practical 1
+│   ├── eda.py                 # Practical 0
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── als.py             # Practical 2, 3, 4, 5
+│   │   └── bpr.py             # Practical 6
+│   ├── evaluation.py          # Metrics (RMSE, Precision, Recall)
+│   └── utils.py               # Logging, A/B Testing simulation
 ├── app/
-│   ├── streamlit_app.py
-│   ├── pages/
-│   └── components/
-├── docs/
-└── tests/
+│   └── main.py                # Streamlit Application
+├── notebooks/                 # Jupyter notebooks for prototyping
+└── reports/
+    └── figures                # all the figures made for the report 
 ```
 
 ---
