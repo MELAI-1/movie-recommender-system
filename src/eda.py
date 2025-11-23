@@ -9,7 +9,7 @@ from datetime import datetime
 import warnings
 import yaml
 import re
-from wordcloud import WordCloud
+import Wordcloud
 
 # --- Project Root ---
 PROJECT_ROOT = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
