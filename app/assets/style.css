@@ -1,0 +1,39 @@
+/* Fond global sombre */
+.stApp {
+    background-color: #141414;
+    color: #ffffff;
+}
+
+/* Sidebar Noire */
+[data-testid="stSidebar"] {
+    background-color: #000000;
+    border-right: 1px solid #333;
+}
+
+/* Style des boutons (Rouge Netflix) */
+div.stButton > button {
+    background-color: #E50914 !important;
+    color: white !important;
+    border-radius: 4px !important;
+    border: none !important;
+    font-weight: bold;
+    width: 100%;
+}
+
+/* Hover effet sur les images */
+img {
+    border-radius: 10px;
+    transition: transform .3s;
+}
+img:hover {
+    transform: scale(1.08);
+    cursor: pointer;
+}
+
+/* Texte des titres de films */
+.movie-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #f5f5f5;
+}
