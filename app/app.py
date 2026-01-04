@@ -11,7 +11,7 @@ with st.sidebar:
     st.image("https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", width=150)
     st.markdown("---")
     st.markdown("### 👤 Developer")
-    st.info("**Astrid Melvin Fokam Ninyim**")
+    st.info("**Astride Melvin Fokam Ninyim**")
     st.caption("Expert en IA & Systèmes de Recommandation")
     st.markdown("---")
 
@@ -20,4 +20,4 @@ st.title("🎬 Netflix Movie Recommender")
 st.markdown("### Bienvenue dans votre futur système de divertissement intelligent.")
 st.image("https://images.alphacoders.com/134/1344262.png", use_container_width=True)
 
-st.success("Utilisez le menu à gauche pour naviguer dans l'application.")
+st.success("Use the sidebar menu to navigate through the application.")
