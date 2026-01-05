@@ -1,34 +1,29 @@
 import streamlit as st
 import requests
 import pickle
-import pandas as pd
 
-API_KEY = "TA_CLE_TMDB_ICI" # Remplace par ta clé gratuite sur themoviedb.org
+# Access secrets
+TMDB_API_KEY = st.secrets["TMDB_API_KEY"]
 
 @st.cache_data
-def fetch_poster(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=en-US"
+def get_trending_movies():
+    url = f"https://api.themoviedb.org/3/trending/movie/week?api_key={TMDB_API_KEY}"
     try:
-        data = requests.get(url).json()
-        poster_path = data['poster_path']
-        return "https://image.tmdb.org/t/p/w500/" + poster_path
+        res = requests.get(url)
+        return res.json().get('results', [])[:5]
     except:
-        return "https://via.placeholder.com/500x750?text=No+Image"
+        return []
 
 @st.cache_resource
-def load_data():
-    # On charge les fichiers préparés
-    movies = pickle.load(open('data/movies_list.pkl', 'rb'))
-    similarity = pickle.load(open('data/similarity.pkl', 'rb'))
-    return movies, similarity
+def load_local_data():
+    try:
+        movies = pickle.load(open('data/movies_list.pkl', 'rb'))
+        sim_map = pickle.load(open('data/similarity_map.pkl', 'rb'))
+        return movies, sim_map
+    except:
+        return None, None
 
-def get_recommendations(movie_title, movies, similarity):
-    idx = movies[movies['title'] == movie_title].index[0]
-    distances = sorted(list(enumerate(similarity[idx])), reverse=True, key=lambda x: x[1])
-    
-    recoms = []
-    for i in distances[1:7]: # Top 6
-        movie_id = movies.iloc[i[0]].movie_id
-        title = movies.iloc[i[0]].title
-        recoms.append((title, fetch_poster(movie_id)))
-    return recoms
+def get_poster_url(path):
+    if path:
+        return f"https://image.tmdb.org/t/p/w500{path}"
+    return "https://via.placeholder.com/500x750?text=No+Poster"
