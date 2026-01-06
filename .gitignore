@@ -1,1 +1,23 @@
+# --- Security & Secrets ---
+.env
+.streamlit/secrets.toml
+
+# --- Large Data Files (Datasets & Models) ---
+# Ignores all CSV and Pickle files anywhere in the project
+*.csv
+*.pkl
 data/
+
+# --- Python System Files ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Operating System Files ---
+.DS_Store
+Thumbs.db
+
+# --- Development Folders ---
+.venv/
+env/
+venv/
