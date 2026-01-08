@@ -1,7 +1,7 @@
 import streamlit as st
 from utils.engine import load_local_data
 
-st.title("🎯 Picked For You")
+st.title("Picked For You")
 movies, sim_map = load_local_data()
 
 if movies is not None:
