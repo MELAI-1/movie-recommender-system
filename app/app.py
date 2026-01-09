@@ -26,7 +26,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-st.subheader("🔥 Trending This Week")
+st.subheader(" Trending This Week")
 trending = get_trending_movies()
 
 if trending:
