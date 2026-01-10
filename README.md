@@ -152,5 +152,5 @@ Contributions are welcome! Please open an issue to discuss major changes.
 ## 🙏 Acknowledgments
 
 *   **GroupLens Research** for the MovieLens dataset.
-*   **Ulrich Paquet** (DeepMind/AIMS) for supervision and course structure.
+*   **Prof Ulrich Paquet** (DeepMind/AIMS South Africa) for supervision and course structure.
 ```
