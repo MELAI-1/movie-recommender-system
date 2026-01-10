@@ -855,37 +855,6 @@ The complete academic report (`reports/Melvin_ALS_report.pdf`) includes:
 
 ---
 
-## 🚀 Future Work
-
-### Planned Enhancements
-
-**Short-term (Q1 2025):**
-- [ ] Implement Neural Collaborative Filtering (NCF)
-- [ ] Add API endpoints (FastAPI)
-- [ ] Docker containerization
-- [ ] GPU acceleration with CuPy
-
-**Medium-term (Q2-Q3 2025):**
-- [ ] Variational Autoencoders for CF (VAE-CF)
-- [ ] Graph Neural Networks (LightGCN)
-- [ ] Multi-task learning (ratings + clicks)
-- [ ] Online learning / incremental updates
-
-**Long-term (Q4 2025+):**
-- [ ] Transformer-based sequential recommendations
-- [ ] Federated learning for privacy
-- [ ] Multi-modal recommendations (text + images)
-- [ ] Causal inference for debiasing
-
-### Research Directions
-
-- **Fairness:** Ensure recommendations are not biased by demographic factors
-- **Explainability:** Generate natural language explanations for recommendations
-- **Diversity:** Balance accuracy with exploration of long-tail items
-- **Context-awareness:** Incorporate temporal, location, and device context
-
----
-
 ## 📚 Additional Resources
 
 ### Tutorials
