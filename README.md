@@ -1,3 +1,4 @@
+
 # 🎬 MovieLens 32M Recommender System
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
@@ -100,12 +101,20 @@ streamlit run app/main.py
 
 ### 1. Feature-Augmented ALS (Hybrid)
 We solve the **Cold Start** problem by constraining item vectors $\mathbf{v}_i$ to be close to their genre centroids. The modified loss function is:
-$$ J = \sum_{(u,i)} (r_{ui} - \mathbf{u}_u^T \mathbf{v}_i)^2 + \tau \sum_{i} ||\mathbf{v}_i - \mathbf{F}^T \mathbf{g}_i||^2 + \lambda ||\Theta||^2 $$
+
+$$
+J = \sum_{(u,i)} (r_{ui} - \mathbf{u}_u^T \mathbf{v}_i)^2 + \tau \sum_{i} ||\mathbf{v}_i - \mathbf{F}^T \mathbf{g}_i||^2 + \lambda ||\Theta||^2
+$$
+
 *   **Outcome:** Allows predicting scores for movies like *Alien: Romulus* even if they have 0 ratings, based on the user's affinity for *Sci-Fi*.
 
 ### 2. Bayesian Personalized Ranking (BPR)
 Optimizes for ranking order rather than rating value using pairwise loss:
-$$ \max_{\Theta} \sum_{(u,i,j) \in D_S} \ln \sigma(\hat{x}_{ui} - \hat{x}_{uj}) - \lambda_{\Theta} ||\Theta||^2 $$
+
+$$
+\max_{\Theta} \sum_{(u,i,j) \in D_S} \ln \sigma(\hat{x}_{ui} - \hat{x}_{uj}) - \lambda_{\Theta} ||\Theta||^2
+$$
+
 *   **Outcome:** Superior Precision@10 performance compared to standard ALS.
 
 ---
