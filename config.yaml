@@ -1,56 +1,271 @@
+# MovieLens Recommender System Configuration
+# ============================================
 
-# =================================================================
-# PROJECT PATHS (RELATIVE to the project root)
-# =================================================================
+# Project Metadata
+project:
+  name: "MovieLens 32M Recommender System"
+  version: "1.0.0"
+  author: "Astride Melvin Fokam Ninyim"
+  description: "Production-ready recommendation system with ALS and BPR"
 
-paths:
-  
-  project_root: "."
-
-  # Directory for saving generated figures and charts
-  # We'll place figures inside the 'reports' folder for presentation
-  figures: "reports/figures"
-
-  # Directory for raw data (e.g., the ml-32m download)
-  data_raw: "data/raw"
-
-  # Directory for cleaned/pre-processed data and temporary files
-  data_processed: "data/processed"
-
-  # Directory for saving trained models
-  models: "src/models"
-
-
-# =================================================================
-# DATA CONFIGURATION
-# =================================================================
-
+# Data Configuration
 data:
-  # Base folder name for the dataset files
-  dataset_folder_dir: "/home/melvin/Documents/ml-32m"
-
+  # Paths
+  raw_dir: "data/raw/ml-32m"
+  processed_dir: "data/processed"
   
-  # Filenames within the dataset_folder
-  movies_file: "movies.csv"
+  # Files
   ratings_file: "ratings.csv"
-  # Train/Test split size (e.g., 0.2 means 20% for testing)
-  test_size: 0.2
-
-# =================================================================
-# MODEL HYPERPARAMETERS
-# =================================================================
-
-model:
-  # Shared hyperparameters for both ALS and BPR
-  n_factors: 50
-  regularization: 0.01
-  n_epochs: 100
+  movies_file: "movies.csv"
+  links_file: "links.csv"
+  tags_file: "tags.csv"
   
-  als:
-    # Hyperparameter specific to the Alternating Least Squares model
-    alpha: 40
+  # Data Split
+  train_test_split: 0.8
+  validation_split: 0.1  # From training set
+  random_seed: 42
+  
+  # Preprocessing
+  min_user_ratings: 20      # Filter users with fewer ratings
+  min_item_ratings: 5       # Filter items with fewer ratings
+  rating_scale: [0.5, 5.0]  # Min and max ratings
+  
+  # Optimization
+  use_float32: true         # Reduce memory usage
+  use_sparse: true          # Use sparse matrices
+
+# Model Configurations
+models:
+  
+  # Bias-Only ALS (Baseline)
+  bias_als:
+    lambda: 2.0             # L2 regularization
+    n_epochs: 10
+    verbose: true
+    early_stopping: false
     
+  # Full Matrix Factorization ALS
+  full_als:
+    n_factors: 15           # Latent dimensionality (K)
+    lambda: 13.0            # L2 regularization
+    n_epochs: 15
+    init_mean: 0.0          # Factor initialization
+    init_std: 0.1
+    use_numba: true         # Enable JIT compilation
+    parallel: true          # Parallel execution
+    verbose: true
+    early_stopping: true
+    patience: 3             # Stop if no improvement for N epochs
+    
+  # Genre-Augmented ALS (Cold Start)
+  genre_als:
+    n_factors: 15
+    lambda: 10.0            # Factor regularization
+    tau: 5.0                # Genre constraint weight
+    n_epochs: 15
+    use_numba: true
+    parallel: true
+    verbose: true
+    
+  # Bayesian Personalized Ranking
   bpr:
-    # Hyperparameter specific to the Bayesian Personalized Ranking model
-    learning_rate: 0.001
-    batch_size: 256
+    n_factors: 20
+    learning_rate: 0.01
+    lambda: 0.01            # Factor regularization
+    n_epochs: 30
+    n_samples: 1000000      # Training samples per epoch
+    init_mean: 0.0
+    init_std: 0.01
+    verbose: true
+    early_stopping: true
+    patience: 5
+
+# Hyperparameter Tuning
+tuning:
+  
+  # Grid Search
+  grid_search:
+    enabled: true
+    n_factors: [10, 15, 20, 25]
+    lambda: [5.0, 10.0, 15.0, 20.0]
+    n_epochs: 5             # Quick evaluation
+    
+  # Random Search
+  random_search:
+    enabled: true
+    n_trials: 15
+    n_factors:
+      min: 10
+      max: 50
+      type: "int"
+    lambda:
+      min: 0.1
+      max: 50.0
+      type: "log_uniform"
+    n_epochs: 5
+
+# Training Configuration
+training:
+  # Checkpointing
+  save_checkpoints: true
+  checkpoint_dir: "data/processed/checkpoints"
+  checkpoint_interval: 5   # Save every N epochs
+  
+  # Logging
+  log_dir: "logs"
+  log_level: "INFO"
+  tensorboard: false       # Enable TensorBoard logging
+  
+  # Performance
+  batch_size: 1024         # For SGD-based methods
+  num_workers: 4           # Parallel data loading
+  
+  # Device
+  device: "cpu"            # Options: cpu, cuda
+  use_mixed_precision: false
+
+# Evaluation Configuration
+evaluation:
+  # Metrics to compute
+  metrics:
+    - "rmse"
+    - "mae"
+    - "precision"
+    - "recall"
+    - "ndcg"
+    - "coverage"
+    - "diversity"
+  
+  # Ranking metrics configuration
+  k_values: [5, 10, 20, 50, 100]
+  
+  # Cold start evaluation
+  cold_start:
+    enabled: true
+    n_test_items: 5000     # New items to test
+    min_genres: 1          # Items must have at least N genres
+  
+  # Temporal evaluation
+  temporal:
+    enabled: true
+    window_size: "3M"      # 3 months
+    stride: "1M"           # 1 month
+
+# Visualization Configuration
+visualization:
+  # Output
+  output_dir: "figures"
+  format: "pdf"            # Options: pdf, png, svg
+  dpi: 300                 # Resolution for raster formats
+  
+  # Style
+  style: "whitegrid"       # Seaborn style
+  context: "paper"         # paper, notebook, talk, poster
+  font_scale: 1.4
+  
+  # Figures to generate
+  figures:
+    eda:
+      - "rating_distribution"
+      - "long_tail"
+      - "user_activity"
+      - "temporal_evolution"
+      - "genre_heatmap"
+      - "sparsity_heatmap"
+    
+    models:
+      - "convergence"
+      - "hyperparameter_search"
+      - "overfitting_analysis"
+      - "genre_embeddings"
+      - "cold_start_breakdown"
+  
+  # Plot dimensions
+  figure_size:
+    small: [8, 6]
+    medium: [10, 6]
+    large: [12, 8]
+    wide: [14, 6]
+
+# Streamlit Application Configuration
+streamlit:
+  # Server
+  port: 8501
+  max_upload_size: 200     # MB
+  
+  # Caching
+  enable_cache: true
+  cache_ttl: 3600          # Seconds
+  
+  # Data sampling (for performance)
+  use_sample: false
+  sample_size: 500000      # Number of ratings
+  
+  # Features
+  features:
+    home: true
+    eda: true
+    models: true
+    recommender: true
+    metrics: true
+  
+  # Recommendations
+  default_n_recommendations: 10
+  max_n_recommendations: 50
+  
+  # Filters
+  filters:
+    genres: true
+    min_ratings: true
+    release_year: true
+
+# Reporting Configuration
+reporting:
+  # Output
+  output_dir: "reports"
+  
+  # Academic report
+  academic_report:
+    enabled: true
+    format: "pdf"
+    include_code: false
+    include_figures: true
+  
+  # Model cards
+  model_cards:
+    enabled: true
+    template: "templates/model_card.md"
+  
+  # Performance reports
+  performance_report:
+    enabled: true
+    include_benchmarks: true
+    include_ablations: true
+
+# System Configuration
+system:
+  # Memory management
+  max_memory_gb: 16
+  gc_interval: 10          # Run garbage collection every N iterations
+  
+  # Warnings
+  suppress_warnings: true
+  
+  # Random seeds (for reproducibility)
+  seeds:
+    numpy: 42
+    python: 42
+    numba: 42
+
+# Development Configuration
+development:
+  # Debug mode
+  debug: false
+  profile: false           # Enable profiling
+  
+  # Testing
+  run_tests: false
+  test_subset_size: 10000  # Small dataset for quick tests
+  
+  # Jupyter
+  jupyter_autoreload: true
