@@ -4,7 +4,7 @@
 
 # --- Large Data Files (Datasets & Models) ---
 # Ignores all CSV and Pickle files anywhere in the project
-*.csv
+# *.csv
 *.pkl
 # data/
 
