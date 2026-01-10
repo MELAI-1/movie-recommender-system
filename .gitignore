@@ -6,7 +6,7 @@
 # Ignores all CSV and Pickle files anywhere in the project
 *.csv
 *.pkl
-data/
+# data/
 
 # --- Python System Files ---
 __pycache__/
