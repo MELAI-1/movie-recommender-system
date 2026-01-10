@@ -53,7 +53,7 @@ movie_recsys/
 ├── notebooks/                 # Prototyping & Experiments
 └── reports/
     ├── figures/               # Generated PDFs for the Academic Report
-    └── academic_report.pdf    # Final documentation
+    └── Melvin_ALS_report.pdf    # Final documentation
 ```
 
 ---
